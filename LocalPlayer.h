@@ -13,7 +13,7 @@ public:
 	int* GetTeam();
 	Vector3* GetOrigin();
 	Vector3* GetViewOffset();
-	void AimAt(Vector3* target);
+	void AimAt(Player* targetEnemy);
 	float GetDistance(Vector3* other);
 
 	void Shoot();

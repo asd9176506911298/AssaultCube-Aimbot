@@ -35,3 +35,8 @@ Vector3* Player::GetViewOffset()
 {
 	return (Vector3*)(*(uintptr_t*)this + headPos);
 }
+
+Vector3* Player::GetHead()
+{
+	return (Vector3*)(*(uintptr_t*)this + head);
+}

@@ -38,10 +38,16 @@ Vector3* LocalPlayer::GetViewOffset()
 
 double PI = 3.14159265358;
 
-void LocalPlayer::AimAt(Vector3* target)
+void LocalPlayer::AimAt(Player* targetEnemy)
 {
 	static LocalPlayer* localPlayer = Get();
 	static Vector3* viewAngles = (Vector3*)(*(uintptr_t*)localPlayer + viewAngle);
+	Vector3* target = targetEnemy->GetHead();
+	if (target->x == -1.0f && target->y == -1.0f && target->z == -1.0f)
+	{
+		target = targetEnemy->GetViewOffset();
+	}
+	//target = targetEnemy->GetViewOffset();
 	Vector3* myPos = GetViewOffset();
 	
 	Vector3 deltaVec = { target->x - myPos->x, target->y - myPos->y, target->z - myPos->z };
@@ -49,7 +55,8 @@ void LocalPlayer::AimAt(Vector3* target)
 
 	float pitch = asin(deltaVec.z / deltaVecLength) * (180 / PI);
 	float yaw = atan2f(deltaVec.y, deltaVec.x) * (180 / PI);
-
+	//std::cout << atan2f(deltaVec.y, deltaVec.x) << std::endl;
+	//std::cout << yaw + 90 << std::endl;
 	viewAngles->x = yaw + 90;
 	viewAngles->y = pitch;
 	Shoot();
@@ -127,3 +134,4 @@ bool LocalPlayer::IsVisible(Player* ent)
 
 	return !traceresult.collided;
 }
+

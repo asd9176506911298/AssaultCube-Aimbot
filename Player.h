@@ -13,4 +13,5 @@ public:
 	int* GetTeam();
 	Vector3* GetOrigin();
 	Vector3* GetViewOffset();
+	Vector3* GetHead();
 };

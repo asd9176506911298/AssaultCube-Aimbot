@@ -68,7 +68,7 @@ void Run()
 	{
 		if (LocalPlayer::Get()->IsVisible(closestEnemy))
 		{
-			LocalPlayer::Get()->AimAt(closestEnemy->GetViewOffset());
+			LocalPlayer::Get()->AimAt(closestEnemy);
 		}
 	}
 }
